@@ -14,13 +14,13 @@ def pad_data(data):
     return np.pad(data, pad_width=(amount, amount+extra), mode='edge')
 
 
-with open('compressedData/normal.pickle', 'rb') as normal_f:
+with open('../compressedData/normal.pickle', 'rb') as normal_f:
     normal_data = pickle.load(normal_f)
 
-with open('compressedData/abnormal.pickle', 'rb') as abnormal_f:
+with open('../compressedData/abnormal.pickle', 'rb') as abnormal_f:
     abnormal_data = pickle.load(abnormal_f)
 
-with open('compressedData/abnormal_label.pickle', 'rb') as abnormal_l_f:
+with open('../compressedData/abnormal_label.pickle', 'rb') as abnormal_l_f:
     abnormal_labels = pickle.load(abnormal_l_f)
 
 unique_label_set = set(abnormal_labels)
@@ -59,11 +59,11 @@ print(np.shape(filtered_normal))
 print(np.shape(filtered_abnormal))
 print(np.shape(filtered_abnormal_labels))
 
-with open('compressedData/normal_f1.pickle', 'wb') as norm_file:
-        pickle.dump(filtered_normal, norm_file)
+with open('../compressedData/normal_f1.pickle', 'wb') as norm_file:
+    pickle.dump(filtered_normal, norm_file)
 
-with open('compressedData/abnormal_f1.pickle', 'wb') as abnorm_file:
+with open('../compressedData/abnormal_f1.pickle', 'wb') as abnorm_file:
     pickle.dump(filtered_abnormal, abnorm_file)
 
-with open('compressedData/abnormal_label_f1.pickle', 'wb') as abnorm_label_file:
+with open('../compressedData/abnormal_label_f1.pickle', 'wb') as abnorm_label_file:
     pickle.dump(filtered_abnormal_labels, abnorm_label_file)
