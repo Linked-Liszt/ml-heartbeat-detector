@@ -21,26 +21,25 @@ with open('../compressedData/abnormal_f1_TF.pickle', 'rb') as abnormal_f:
     abnormal_data = pickle.load(abnormal_f)
 
 full_data = normal_data
-print(np.shape(full_data))
 full_data += abnormal_data
-print(np.shape(abnormal_data))
 random.shuffle(full_data)
 
-print(np.shape(full_data))
 
 features = []
 labels = []
 for data in full_data:
     features.append(data[0])
-    #labels.append(data[1])
+    labels.append(data[1])
 
 print(np.shape(features))
 print(np.shape(labels))
 
+features = np.asarray(features)
+labels = np.asarray(labels)
 
+NAME = "4-512-{}".format(int(time.time()))
+tensorboard = TensorBoard(log_dir="logs/{}".format(NAME))
 
-
-"""
 model = tf.keras.models.Sequential()  # a basic feed-forward model
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))  
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))  
@@ -52,4 +51,5 @@ model.add(Activation('sigmoid'))
 model.compile(optimizer='adam',  
               loss='binary_crossentropy',  
               metrics=['accuracy']) 
-"""
+
+model.fit(features, labels, validation_split=0.3, epochs=10, callbacks=[tensorboard])
