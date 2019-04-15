@@ -24,9 +24,11 @@ for a in abnormal_data:
 
 print(np.mean(avgs_n))
 print(np.min(avgs_n))
+print(np.max(avgs_n))
 print("-------------")
 print(np.mean(avgs_a))
 print(np.min(avgs_a))
+print(np.max(avgs_a))
 
 #299 avg
 #286 median

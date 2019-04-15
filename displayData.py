@@ -2,10 +2,16 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
-with open('abnormal_f1.pickle', 'rb') as normal_f:
+with open('compressedData/abnormal_f1.pickle', 'rb') as normal_f:
     normal_data = pickle.load(normal_f)
 
 fig, axs =plt.subplots(20, 20)
+
+abnormal_filtered = []
+
+for data in normal_data:
+    if len(data) < 250:
+        abnormal_filtered.append(data)
 
 i = 0
 for row in axs:
