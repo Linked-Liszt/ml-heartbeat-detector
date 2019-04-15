@@ -6,11 +6,10 @@ import pickle
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning) #outdated libraries?
 
+#Labels from here: https://github.com/MIT-LCP/wfdb-python/blob/master/wfdb/io/annotation.py
+FILTERED_ANNOTATIONS = ["+", "P", "T", "~", "/", "M", "Q", " ", "|"]
+
 def main():
-    SAMPLE_LENGTH = 360*10 #360 hz * 10  for 10 seconds
-
-    NORMAL_ANNOTATIONS = ["N", "L", "R", "A", "a", "J", "S", "·"]
-
     FILE_DIR = "data/"
 
     normal_final = []
@@ -23,11 +22,10 @@ def main():
             fn = FILE_DIR + filename[:-4]
             print(fn)
 
-            record = wfdb.rdrecord(fn)
-            sample, fields = wfdb.rdsamp(fn)
+            sample, _ = wfdb.rdsamp(fn)
             annotation = wfdb.rdann(fn, 'atr')
 
-            sample_array, b = zip(*sample)
+            sample_array, _ = zip(*sample)
             xqrs = wdpc.XQRS(sig=np.asarray(sample_array), fs=360)
             xqrs.detect()
 
@@ -109,7 +107,7 @@ def split_samples_by_annotation(sample, annotation, qrs_indexes):
         if (ann == "N"):
             normal_samples.append(sample[begin:end])
         
-        elif (ann != "P"): #Ignore pacemaker... that's normal?
+        elif (ann not in FILTERED_ANNOTATIONS): #Ignore pacemaker... that's normal?
             abnormal_samples.append(sample[begin:end])
             abnormal_labels.append(ann)
 
