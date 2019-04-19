@@ -54,6 +54,8 @@ def main():
 
     with open('abnormal_label.pickle', 'wb') as abnorm_label_file:
         pickle.dump(abnormal_label_final, abnorm_label_file)
+    
+    
     #print(np.shape(a))
     #print(sample[1])
 
