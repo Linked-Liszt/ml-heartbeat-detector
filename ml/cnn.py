@@ -1,8 +1,7 @@
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv1D, MaxPooling1D, LSTM
-from keras.layers.normalization import BatchNormalization
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv1D, MaxPooling1D, LSTM, BatchNormalization
 from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
 import pickle
@@ -11,7 +10,6 @@ import random
 import math
 
 SPLIT = 0.8
-
 
 with open('../compressedData/normal_f1_TF.pickle', 'rb') as normal_f:
     normal_data = pickle.load(normal_f)
@@ -35,7 +33,6 @@ for data in full_data:
 
 print(np.shape(features))
 print(np.shape(labels))
-input()
 
 features = np.asarray(features)
 labels = np.asarray(labels)
@@ -47,20 +44,19 @@ model = tf.keras.models.Sequential()
 
 for i in range(2):
     model.add(Conv1D(filters=64, kernel_size=3, activation=tf.nn.relu, input_shape=(450, 1)))
-    model.add(BatchNormalization())
     model.add(Conv1D(filters=64, kernel_size=3, activation=tf.nn.relu))
     model.add(Dropout(0.25))
     model.add(MaxPooling1D(2))
-model.add(Flatten())
 model.add(Conv1D(filters=128, kernel_size=3, activation=tf.nn.relu, input_shape=(450, 1)))
-model.add(BatchNormalization())
 model.add(Conv1D(filters=128, kernel_size=3, activation=tf.nn.relu))
 model.add(Dropout(0.25))
 model.add(MaxPooling1D(2))
+model.add(Flatten())
 model.add(Dense(512, activation=tf.nn.relu))
+
 """
 model.add(tf.keras.layers.Dense(450, input_shape=(450, ), activation=tf.nn.relu))
-model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))  
+model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))
 """
