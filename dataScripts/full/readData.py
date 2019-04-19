@@ -1,16 +1,16 @@
-import wfdb
-import wfdb.processing as wdpc
 import numpy as np
 import os
 import pickle
+import wfdb
+import wfdb.processing as wdpc
 import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning) #outdated libraries?
+warnings.simplefilter(action='ignore', category=FutureWarning) #outdated libraries in wfdb?
 
-#Labels from here: https://github.com/MIT-LCP/wfdb-python/blob/master/wfdb/io/annotation.py
-ANNOTATIONS = ["N","+", "P", "T", "~", "/", "M", "Q", " ", "|", 'J', 'j', 'x', 'R', 'f', 'L', 'E', 'a', 'A', 'V', ']', 'F', '!']
+#Labels from here. Also list for refernce: https://github.com/MIT-LCP/wfdb-python/blob/master/wfdb/io/annotation.py
+ANNOTATIONS = ["N", "+", "P", "T", "~", "/", "M", "Q", " ", "|", 'J', 'j', 'x', 'R', 'f', 'L', 'E', 'a', 'A', 'V', ']', 'F', '!']
 
 def main():
-    FILE_DIR = "data/"
+    FILE_DIR = "../../data/"
 
     heartbeats_full = []
     labels_full = []
@@ -21,42 +21,27 @@ def main():
             fn = FILE_DIR + filename[:-4]
             print(fn)
 
-            sample, _ = wfdb.rdsamp(fn)
+            sample, metadata = wfdb.rdsamp(fn)
             annotation = wfdb.rdann(fn, 'atr')
 
-            sample_array, _ = zip(*sample)
-            xqrs = wdpc.XQRS(sig=np.asarray(sample_array), fs=360)
+            lead1, lead2 = zip(*sample)
+            xqrs = wdpc.XQRS(sig=np.asarray(lead1), fs=360)
             xqrs.detect()
 
-            heartbeats, labels = split_samples_by_annotation(sample_array, annotation, xqrs.qrs_inds)
+            heartbeats, labels = split_samples_by_annotation(sample, annotation, xqrs.qrs_inds)
 
-            heartbeats_full.append(heartbeats)
-            labels_full.append(labels)
+            heartbeats_full += heartbeats
+            labels_full  += labels
 
-            print(np.shape(heartbeats_full))
+            print(np.shape(heartbeats_full)) 
             print(np.shape(labels_full))
     
-    with open('normal.pickle', 'wb') as norm_file:
-        pickle.dump(normal_final, norm_file)
+    with open('../../compressedDataFull/hearbeats.pickle', 'wb') as norm_file:
+        pickle.dump(heartbeats_full, norm_file)
 
-    with open('abnormal.pickle', 'wb') as abnorm_file:
-        pickle.dump(abnormal_final, abnorm_file)
-
-    with open('abnormal_label.pickle', 'wb') as abnorm_label_file:
-        pickle.dump(abnormal_label_final, abnorm_label_file)
+    with open('../../compressedDataFull/labels.pickle', 'wb') as abnorm_file:
+        pickle.dump(labels_full, abnorm_file)
     
-    
-    #print(np.shape(a))
-    #print(sample[1])
-
-    #print(xqrs.qrs_inds)
-    #wfdb.plot_wfdb(record=record, annotation=annotation)
-    #wfdb.plot_items(signal=sample, ann_samp=[xqrs.qrs_inds])
-    #print(np.shape(record[0]))
-    #print(record[1])
-    #print(annotation.sample)
-    #print(annotation.symbol)
-    #print(len(record.p_signal))
 
 def get_annotation_before(sample_point, annotation):
     if sample_point <= annotation.sample[0]:
