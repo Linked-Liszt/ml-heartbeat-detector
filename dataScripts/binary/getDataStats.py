@@ -3,18 +3,21 @@ import numpy as np
 import scipy.ndimage.interpolation as spi
 import matplotlib.pyplot as plt
 
-with open('compressedData/normal_f1.pickle', 'rb') as normal_f:
+with open('../../compressedData/normal_f1.pickle', 'rb') as normal_f:
     normal_data = pickle.load(normal_f)
 
-with open('compressedData/abnormal_f1.pickle', 'rb') as abnormal_f:
+with open('../../compressedData/abnormal_f1.pickle', 'rb') as abnormal_f:
     abnormal_data = pickle.load(abnormal_f)
 
-with open('compressedData/abnormal_label_f1.pickle', 'rb') as abnormal_l_f:
+with open('../../compressedData/abnormal_label_f1.pickle', 'rb') as abnormal_l_f:
     abnormal_labels = pickle.load(abnormal_l_f)
 
 avgs_n = []
 
 avgs_a = []
+
+print("Unique Abnormal Labels:")
+print(list(set(abnormal_labels)))
 
 for n in normal_data:
     avgs_n.append(len(n))
