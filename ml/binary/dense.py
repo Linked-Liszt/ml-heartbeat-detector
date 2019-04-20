@@ -15,10 +15,10 @@ import numpy as np
 SPLIT = 0.8
 
 
-with open('../compressedData/normal_f1_TF.pickle', 'rb') as normal_f:
+with open('../../compressedDataBinary/normal_f1_TF.pickle', 'rb') as normal_f:
     normal_data = pickle.load(normal_f)
 
-with open('../compressedData/abnormal_f1_TF.pickle', 'rb') as abnormal_f:
+with open('../../compressedDataBinary/abnormal_f1_TF.pickle', 'rb') as abnormal_f:
     abnormal_data = pickle.load(abnormal_f)
 
 full_data = normal_data
@@ -42,7 +42,7 @@ NAME = "4-512-{}".format(int(time.time()))
 tensorboard = TensorBoard(log_dir="logs/{}".format(NAME))
 
 model = tf.keras.models.Sequential()  # a basic feed-forward model
-model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))  
+model.add(tf.keras.layers.Dense(450, activation=tf.nn.relu))  
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))  
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))

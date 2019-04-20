@@ -47,7 +47,7 @@ for i in range(2):
     model.add(Conv1D(filters=64, kernel_size=3, activation=tf.nn.relu))
     model.add(Dropout(0.25))
     model.add(MaxPooling1D(2))
-model.add(Conv1D(filters=128, kernel_size=3, activation=tf.nn.relu, input_shape=(450, 1)))
+model.add(Conv1D(filters=128, kernel_size=3, activation=tf.nn.relu))
 model.add(Conv1D(filters=128, kernel_size=3, activation=tf.nn.relu))
 model.add(Dropout(0.25))
 model.add(MaxPooling1D(2))
