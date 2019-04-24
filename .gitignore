@@ -1,5 +1,9 @@
+#TensorBoard Logs
+*logs/
+
+#Data
 /data
-/ml/binary/logs
-/logs
 /compressedDataFull/*.pickle
 /compressedDataBinary/*.pickle
+/compressedDataFull/*.npy
+/compressedDataBinary/*.npy

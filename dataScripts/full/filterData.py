@@ -1,7 +1,6 @@
-import _pickle as pickle
+import pickle
 import numpy as np
 import math
-import matplotlib.pyplot as plt
 
 MIN_FILTER = 250
 MAX_FILTER = 450
@@ -60,14 +59,16 @@ print(np.shape(filtered_heartbeats))
 print(np.shape(filtered_labels))
 print(filtered_labels[0])
 
-
-with open('../../compressedDataFull/labels_f1.pickle', 'wb', protocal=pickle.HIGHEST_PROTOCOL) as labels_filtered_f:
-    pickle.dump(filtered_labels, labels_filtered_f)
+"""
+with open('../../compressedDataFull/labels_f1.pickle', 'wb') as labels_filtered_f:
+    pickle.dump(filtered_labels, labels_filtered_f, protocol=pickle.HIGHEST_PROTOCOL)
 
 print("Created Labels File")
 
-with open('../../compressedDataFull/heartbeats_f1.pickle', 'wb', protocal=pickle.HIGHEST_PROTOCOL) as heartbeats_filtered_f:
-    pickle.dump(filtered_heartbeats, heartbeats_filtered_f)
+with open('../../compressedDataFull/heartbeats_f1.pickle', 'wb') as heartbeats_filtered_f:
+    pickle.dump(filtered_heartbeats, heartbeats_filtered_f, protocol=pickle.HIGHEST_PROTOCOL)
+"""
 
-print("Created Heartbeats File")
+np.save("../../compressedDataFull/labels_f1.npy", filtered_labels)
+np.save("../../compressedDataFull/heartbeats_f1.npy", filtered_heartbeats)
 
