@@ -38,7 +38,6 @@ print(list(unique_label_set))
 
 #FULL_ANNOTATIONS = ["N", "+", "P", "T", "~", "/", "M", "Q", " ", "|", 'J', 'j', 'x', 'R', 'f', 'L', 'E', 'a', 'A', 'V', ']', 'F', '!']
 ANNOTATIONS = ['N', '+', '~', '!', ']', 'E', 'S', '/', 'L', 'Q', '|', 'F', 'j', 'a', 'R', 'A', 'J', 'x', 'f', 'V']
-
 filtered_heartbeats = []
 filtered_labels = []
 
@@ -51,7 +50,9 @@ for i in range(len(heartbeats)):
     else:
         filtered_heartbeats.append(pad_data(heartbeat))
         #will throw error if not in annotations. That's good. 
-        filtered_labels.append(ANNOTATIONS.index(labels[i]))
+        labelOutput = [0] * len(ANNOTATIONS)
+        labelOutput[ANNOTATIONS.index(labels[i])] = 1
+        filtered_labels.append(labelOutput)
 
 print("Long/Short Heartbeats: " + str(out_of_range))
 
