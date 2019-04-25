@@ -1,6 +1,6 @@
 import numpy as np
 import os
-import cpickle as pickle
+import pickle
 import wfdb
 import wfdb.processing as wdpc
 import warnings
@@ -35,13 +35,15 @@ def main():
 
             print(np.shape(heartbeats_full)) 
             print(np.shape(labels_full))
-    
-    with open('../../compressedDataFull/heartbeats.pickle', 'wb', protocal=pickle.HIGHEST_PROTOCOL) as norm_file:
-        pickle.dump(heartbeats_full, norm_file)
 
-    with open('../../compressedDataFull/labels.pickle', 'wb', protocal=pickle.HIGHEST_PROTOCOL) as abnorm_file:
-        pickle.dump(labels_full, abnorm_file)
-    
+    with open('../../compressedDataFull/heartbeats.pickle', 'wb') as norm_file:
+        pickle.dump(heartbeats_full, norm_file, protocol=pickle.HIGHEST_PROTOCOL)
+
+    with open('../../compressedDataFull/labels.pickle', 'wb') as abnorm_file:
+        pickle.dump(labels_full, abnorm_file, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+
 
 def get_annotation_before(sample_point, annotation):
     if sample_point <= annotation.sample[0]:
