@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv1D, MaxPooling1D, LSTM, BatchNormalization
 from tensorflow.keras.callbacks import TensorBoard
+from tensorflow.keras.optimizers import Adam
 import numpy as np
 import pickle
 import time
@@ -43,6 +44,8 @@ model.add(Flatten())
 model.add(Dense(1024, activation=tf.nn.relu))
 model.add(Dense(20, activation=tf.nn.sigmoid))
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy']) 
+modified_optmiizer = Adam(lr=0.0001)
 
-model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=10, callbacks=[tensorboard])
+model.compile(optimizer=modified_optmiizer, loss='categorical_crossentropy', metrics=['accuracy']) 
+
+model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=15, callbacks=[tensorboard])
