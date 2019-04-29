@@ -24,7 +24,7 @@ print(np.shape(shuffled_heartbeats))
 print(np.shape(shuffled_labels))
 
 
-NAME = "full-cnn-3-{}".format(int(time.time()))
+NAME = "full-cnn-3-norm-{}".format(int(time.time()))
 tensorboard = TensorBoard(log_dir="logs/{}".format(NAME))
 
 model = tf.keras.models.Sequential()
