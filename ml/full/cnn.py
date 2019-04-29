@@ -48,4 +48,4 @@ modified_optmiizer = Adam(lr=0.0001)
 
 model.compile(optimizer=modified_optmiizer, loss='categorical_crossentropy', metrics=['accuracy']) 
 
-model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=15, callbacks=[tensorboard])
+model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=20, callbacks=[tensorboard])
