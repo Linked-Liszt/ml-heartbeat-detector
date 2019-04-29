@@ -1,8 +1,12 @@
 #TensorBoard Logs
 *logs/
 
-#Data
-/data
+#Raw Data
+/data/*.atr
+/data/*.hea
+/data/*.dat
+
+#Processed Data
 /compressedDataFull/*.pickle
 /compressedDataBinary/*.pickle
 /compressedDataFull/*.npy

@@ -24,7 +24,7 @@ print(np.shape(shuffled_heartbeats))
 print(np.shape(shuffled_labels))
 
 
-NAME = "full-cnn-3-{}".format(int(time.time()))
+NAME = "full-cnn-3-norm-{}".format(int(time.time()))
 tensorboard = TensorBoard(log_dir="logs/{}".format(NAME))
 
 model = tf.keras.models.Sequential()
@@ -48,4 +48,4 @@ modified_optmiizer = Adam(lr=0.0001)
 
 model.compile(optimizer=modified_optmiizer, loss='categorical_crossentropy', metrics=['accuracy']) 
 
-model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=15, callbacks=[tensorboard])
+model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=20, callbacks=[tensorboard])
