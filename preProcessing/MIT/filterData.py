@@ -39,10 +39,10 @@ def get_min_max_interp(heartbeats):
             interp_max = max(interp_max, sample[0], sample[1])
     return interp_min, interp_max
 
-with open('../../compressedDataFull/heartbeats.pickle', 'rb') as heartbeats_f:
+with open('../../processedData/MIT/heartbeats.pickle', 'rb') as heartbeats_f:
     heartbeats = pickle.load(heartbeats_f)
 
-with open('../../compressedDataFull/labels.pickle', 'rb') as labels_f:
+with open('../../processedData/MIT/labels.pickle', 'rb') as labels_f:
     labels = pickle.load(labels_f)
 
 unique_label_set = set(labels)
@@ -86,6 +86,6 @@ print(np.shape(filtered_labels))
 #print(filtered_labels[0])
 
 print("Saving Data...")
-np.save("../../compressedDataFull/labels_f1.npy", filtered_labels)
-np.save("../../compressedDataFull/heartbeats_f1.npy", filtered_heartbeats)
+np.save("../../processedData/MIT/labels_f1.npy", filtered_labels)
+np.save("../../processedData/MIT/heartbeats_f1.npy", filtered_heartbeats)
 print("Saved")

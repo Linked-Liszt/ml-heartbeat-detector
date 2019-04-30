@@ -12,8 +12,8 @@ import math
 
 SPLIT = 0.8
 
-heartbeats = np.load("../../compressedDataFull\heartbeats_f1.npy")
-labels = np.load("../../compressedDataFull\labels_f1.npy")
+heartbeats = np.load("../../processedData/MIT/heartbeats_f1.npy")
+labels = np.load("../../processedData/MIT/labels_f1.npy")
 
 heartbeats = np.asarray(heartbeats)
 labels = np.asarray(labels)
