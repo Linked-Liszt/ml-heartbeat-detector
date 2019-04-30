@@ -1,6 +1,5 @@
 import numpy as np
 import os
-import pickle
 import wfdb
 import wfdb.processing as wdpc
 import warnings
@@ -35,12 +34,11 @@ def main():
 
             print(np.shape(heartbeats_full)) 
             print(np.shape(labels_full))
-
-    with open('../../processedData/MIT/heartbeats.pickle', 'wb') as norm_file:
-        pickle.dump(heartbeats_full, norm_file, protocol=pickle.HIGHEST_PROTOCOL)
-
-    with open('../../processedData/MIT/labels.pickle', 'wb') as abnorm_file:
-        pickle.dump(labels_full, abnorm_file, protocol=pickle.HIGHEST_PROTOCOL)
+    
+    print("Saving Data...")
+    np.save("../../processedData/MIT/heartbeats.npy", heartbeats_full)
+    np.save("../../processedData/MIT/labels.npy", labels_full)
+    print("Saved")
 
 
 

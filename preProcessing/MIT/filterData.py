@@ -1,4 +1,3 @@
-import pickle
 import numpy as np
 import math
 
@@ -39,11 +38,8 @@ def get_min_max_interp(heartbeats):
             interp_max = max(interp_max, sample[0], sample[1])
     return interp_min, interp_max
 
-with open('../../processedData/MIT/heartbeats.pickle', 'rb') as heartbeats_f:
-    heartbeats = pickle.load(heartbeats_f)
-
-with open('../../processedData/MIT/labels.pickle', 'rb') as labels_f:
-    labels = pickle.load(labels_f)
+heartbeats = np.load("../../processedData/MIT/heartbeats.npy")
+labels = np.load("../../processedData/MIT/labels.npy")
 
 unique_label_set = set(labels)
 print("Unique Abnormal Labels:")
