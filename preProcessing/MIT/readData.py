@@ -10,7 +10,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning) #outdated librari
 ANNOTATIONS = ["N", "+", "P", "T", "~", "/", "M", "Q", " ", "|", 'J', 'j', 'x', 'R', 'f', 'L', 'E', 'a', 'A', 'V', ']', 'F', '!']
 
 def main():
-    FILE_DIR = "../../data/"
+    FILE_DIR = "../../rawData/MIT/"
 
     heartbeats_full = []
     labels_full = []
@@ -36,10 +36,10 @@ def main():
             print(np.shape(heartbeats_full)) 
             print(np.shape(labels_full))
 
-    with open('../../compressedDataFull/heartbeats.pickle', 'wb') as norm_file:
+    with open('../../processedData/MIT/heartbeats.pickle', 'wb') as norm_file:
         pickle.dump(heartbeats_full, norm_file, protocol=pickle.HIGHEST_PROTOCOL)
 
-    with open('../../compressedDataFull/labels.pickle', 'wb') as abnorm_file:
+    with open('../../processedData/MIT/labels.pickle', 'wb') as abnorm_file:
         pickle.dump(labels_full, abnorm_file, protocol=pickle.HIGHEST_PROTOCOL)
 
 

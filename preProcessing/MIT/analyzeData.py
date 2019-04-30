@@ -12,8 +12,8 @@ def get_min_max_interp(heartbeats):
     return interp_min, interp_max
 
 
-heartbeats = np.load("../../compressedDataFull\heartbeats_f1.npy")
-labels = np.load("../../compressedDataFull\labels_f1.npy")
+heartbeats = np.load("../../processedData/MIT/heartbeats_f1.npy")
+labels = np.load("../../processedData/MIT/labels_f1.npy")
 
 min_h, max_h = get_min_max_interp(heartbeats)
 print(min_h)
