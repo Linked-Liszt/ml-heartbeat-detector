@@ -40,7 +40,11 @@ model.add(Conv1D(filters=256, kernel_size=3, activation=tf.nn.relu))
 model.add(Conv1D(filters=256, kernel_size=3, activation=tf.nn.relu))
 model.add(Dropout(0.25))
 model.add(MaxPooling1D(2, data_format='channels_last'))
+model.add(Conv1D(filters=256, kernel_size=3, activation=tf.nn.relu))
+model.add(Conv1D(filters=256, kernel_size=3, activation=tf.nn.relu))
+model.add(Dropout(0.25))
 model.add(Flatten())
+model.add(Dense(1024, activation=tf.nn.relu))
 model.add(Dense(1024, activation=tf.nn.relu))
 model.add(Dense(20, activation=tf.nn.sigmoid))
 
@@ -48,4 +52,4 @@ modified_optmiizer = Adam(lr=0.0001)
 
 model.compile(optimizer=modified_optmiizer, loss='categorical_crossentropy', metrics=['accuracy']) 
 
-model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=20, callbacks=[tensorboard])
+model.fit(shuffled_heartbeats, shuffled_labels, validation_split=0.3, epochs=20, callbacks=[tensorboard], batch_size=64)
