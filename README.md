@@ -2,7 +2,7 @@
 
 ## Overview
 * A machine learning project to classify heartbeats from ECG. 
-* Highest accuracy 98.66%
+* Highest accuracy 97%
 * Data from the MIT-BIH heartbeat database: https://physionet.org/physiobank/database/mitdb/
 
 
