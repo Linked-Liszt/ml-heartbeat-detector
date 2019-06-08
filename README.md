@@ -9,7 +9,7 @@
 ## Pre-Processing
 * Uses the wfdb library to help with pre-processing the raw files.
 * Each heartbeat is extracted using QRS detection.
-* The respective label is found and applied to the heartbeat. 
+* The respective label is found from the .atr file and applied to the heartbeat. 
 * The heartbeats get edge padded to be 450 samples long. (Sample Rate 360hz)
 * The related files are readData.py and filterData.py
 
@@ -31,4 +31,3 @@ Results             |  Network
 * Expand data set to use more sources with similar classification scheme. 
 * Apply new ML methods to achieve higher accuracy. 
 * With more data, potentially see if model can be trained on one data set, then applied to a different one while maintaining accuracy. 
-
